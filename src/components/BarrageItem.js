@@ -22,6 +22,7 @@ class BarrageItem extends React.Component {
     if (i < window_width) {
       this.setState({marginRight: this.state.marginRight + 1})
     } else {
+      this.setState({marginRight: 0})
       this.props.roundFinished(this.props.name);
     }
   }
