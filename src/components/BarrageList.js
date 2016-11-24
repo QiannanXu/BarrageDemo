@@ -32,7 +32,7 @@ class BarrageList extends React.Component {
     });
 
     return (
-      <div>
+      <div className="barrage-list__container">
         { barrageItems }
         <BarrageSender onSend={this.onSend}/>
         <ReactInterval timeout={2000} enabled={true} callback={() => this.addItem()}/>
