@@ -1,0 +1,46 @@
+.barrage-sender {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+  border-radius: 3px;
+
+  &__link {
+    background-color: #333f48;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+    padding: 20px 20px;
+    color: $color-white;
+    font-size: 16px;
+    margin: 0;
+  }
+
+  &__content {
+    background-color: #f3f4f5;
+    min-height: 240px;
+    min-width: 270px;
+    padding-top: 40px;
+  }
+
+  &__input {
+    display: block;
+    margin: 0 auto 40px;
+    width: 90%;
+    font-size: 16px;
+    border: 1px solid #c3c8ce;
+    box-sizing: border-box;
+    font-family: Museo-Sans-300,Helvetica Neue,Helvetica,Arial,sans-serif;
+    padding: 13px 16px;
+    border-radius: 4px;
+    color: #333f48;
+    background-color: #fff;
+  }
+
+  &__button {
+    border-radius: 4px;
+    font-size: 16px;
+    background: #333f48;
+    color: $color-white;
+    padding: 9px 45px;
+    border: none;
+  }
+}

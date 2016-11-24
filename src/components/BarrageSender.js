@@ -1,6 +1,5 @@
 import React from 'react';
 import firebase from 'firebase';
-import {Button} from 'react-bootstrap';
 
 class BarrageSender extends React.Component {
   constructor(props) {
@@ -12,7 +11,7 @@ class BarrageSender extends React.Component {
     const items = [];
 
     this.firebaseRef = firebase.database().ref("items");
-    this.firebaseRef.on("child_added", (dataSnapshot) =>  {
+    this.firebaseRef.on("child_added", (dataSnapshot) => {
       items.push({
         key: dataSnapshot.key,
         value: dataSnapshot.val(),
@@ -36,9 +35,13 @@ class BarrageSender extends React.Component {
 
   render() {
     return (
-      <div>
-        <input ref="barrageContent" className="barrage__input" placeholder="Please input barrage"/>
-        <Button bsStyle='primary' onClick={this.handleSubmit}>Send</Button>
+      <div className="barrage-sender">
+        <h2 className="barrage-sender__link">Send your barrage!</h2>
+
+        <div className="barrage-sender__content">
+          <input ref="barrageContent" className="barrage-sender__input" placeholder="Please input barrage"/>
+          <button className="barrage-sender__button" onClick={this.handleSubmit}>Send</button>
+        </div>
       </div>
     )
   }

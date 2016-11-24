@@ -1,6 +1,4 @@
+@import './variable';
 @import './barrage-item';
 @import './barrage-list';
-
-#app {
-  position: relative;
-}
+@import './barrage-sender';
