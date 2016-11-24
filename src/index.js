@@ -1,5 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import HelloWorld from './components/HelloWorld';
+import {initFirebase} from './service/firebase';
+import BarrageSender from './components/BarrageSender';
 
-ReactDOM.render(<HelloWorld />, document.getElementById('app'));
+initFirebase();
+
+ReactDOM.render(<BarrageSender />, document.getElementById('app'));
