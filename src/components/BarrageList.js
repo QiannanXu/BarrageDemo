@@ -2,36 +2,29 @@ import $ from 'jquery';
 import React from 'react';
 import BarrageItem from './BarrageItem';
 import BarrageSender from './BarrageSender';
+import ReactInterval from 'react-interval';
 
 class BarrageList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      barrageData: []
+      barrageData: [],
+      count: 0
     };
     this.onSend = this.onSend.bind(this);
-    this.roundFinished = this.roundFinished.bind(this);
   }
 
   onSend(barrageData) {
     this.setState({barrageData: barrageData});
   }
 
-  roundFinished(name) {
-    const filteredBarrageData = this.state.barrageData.map((item) => {
-      return {
-        key: item.key,
-        value: item.value,
-        finished: item.key === name
-      }
-    });
-
-    this.state = {barrageData: filteredBarrageData};
+  addItem() {
+    this.setState({count: this.state.count + 1});
   }
 
   render() {
-    const barrageItems = this.state.barrageData.map((item) => {
-      if (!item.finished) {
+    const barrageItems = this.state.barrageData.map((item, index) => {
+      if (index < this.state.count) {
         return <BarrageItem key={item.key} name={item.key}
                             text={item.value.text} roundFinished={this.roundFinished}
         />
@@ -42,6 +35,7 @@ class BarrageList extends React.Component {
       <div>
         { barrageItems }
         <BarrageSender onSend={this.onSend}/>
+        <ReactInterval timeout={2000} enabled={true} callback={() => this.addItem()}/>
       </div>
     )
   }
