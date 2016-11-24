@@ -1,34 +1,24 @@
 import React from 'react';
 import firebase from 'firebase';
 import {Button} from 'react-bootstrap';
-import ReactFireMixin from 'reactfire';
 
-const BarrageSender = React.createClass({
-  mixins: [ReactFireMixin],
+class BarrageSender extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
 
-  getInitialState: function () {
-    return {
-      barrages: []
-    }
-  },
-
-  componentDidMount: function () {
+  componentDidMount() {
     const items = [];
 
     this.firebaseRef = firebase.database().ref("items");
-    this.firebaseRef.on("child_added", function (dataSnapshot) {
+    this.firebaseRef.on("child_added", (dataSnapshot) =>  {
       items.push(dataSnapshot.val());
-      this.setState({
-        barrages: items
-      });
-    }.bind(this));
-  },
+      this.props.onSend(items);
+    });
+  }
 
-  componentWillUnmount: function () {
-    this.firebaseRef.off();
-  },
-
-  handleSubmit: function (e) {
+  handleSubmit(e) {
     e.preventDefault();
 
     const barrageContent = this.refs.barrageContent.value;
@@ -36,10 +26,11 @@ const BarrageSender = React.createClass({
       this.firebaseRef.push({
         text: barrageContent
       });
+      this.refs.barrageContent.value = '';
     }
-  },
+  }
 
-  render: function () {
+  render() {
     return (
       <div>
         <input ref="barrageContent" className="barrage__input" placeholder="Please input barrage"/>
@@ -47,5 +38,6 @@ const BarrageSender = React.createClass({
       </div>
     )
   }
-});
+}
+
 export default BarrageSender;
