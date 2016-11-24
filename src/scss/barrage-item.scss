@@ -1,5 +1,11 @@
 .barrage-item {
-  padding: 20px;
+  position: fixed;
+  bottom: 70px;
+  right: -500px;
+  display: inline-block;
+  width: 500px;
+  z-index: 99999;
+  background-color: rgba(0, 0, 0, .5);
 
   &__content {
     background-color: red;
