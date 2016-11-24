@@ -33,7 +33,7 @@ class BarrageItem extends React.Component {
 
     return (
       <div className={className} style={{bottom: this.bottom, marginRight: this.state.marginRight}}>
-        <span className="barrage-item__content">Hello {text}</span>
+        <span className="barrage-item__content">{text}</span>
 
         <ReactInterval timeout={6} enabled={true} callback={() => this.move()}/>
       </div>
