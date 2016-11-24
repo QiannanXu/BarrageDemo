@@ -10,15 +10,32 @@ class BarrageList extends React.Component {
       barrageData: []
     };
     this.onSend = this.onSend.bind(this);
+    this.roundFinished = this.roundFinished.bind(this);
   }
 
   onSend(barrageData) {
     this.setState({barrageData: barrageData});
   }
 
+  roundFinished(name) {
+    const filteredBarrageData = this.state.barrageData.map((item) => {
+      return {
+        key: item.key,
+        value: item.value,
+        finished: item.key === name
+      }
+    });
+
+    this.state = {barrageData: filteredBarrageData};
+  }
+
   render() {
     const barrageItems = this.state.barrageData.map((item) => {
-      return <BarrageItem key={item.key} name={item.key} text={item.value.text} />
+      if (!item.finished) {
+        return <BarrageItem key={item.key} name={item.key}
+                            text={item.value.text} roundFinished={this.roundFinished}
+        />
+      }
     });
 
     return (
