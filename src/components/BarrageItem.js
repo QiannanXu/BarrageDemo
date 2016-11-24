@@ -1,11 +1,16 @@
 import React from 'react';
 
-const BarrageItem = ({text}) => {
-  return (
-    <div>
-      Hello {text}
-    </div>
-  )
-};
+class BarrageItem extends React.Component {
+  render() {
+    const {name, text} = this.props;
+
+    const className = `barrage-item ${name}`;
+    return (
+      <div className={className}>
+        <span className="barrage-item__content">Hello {text}</span>
+      </div>
+    )
+  }
+}
 
 export default BarrageItem;

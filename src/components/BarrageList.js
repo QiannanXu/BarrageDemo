@@ -17,7 +17,7 @@ class BarrageList extends React.Component {
 
   render() {
     const barrageItems = this.state.barrageData.map((item) => {
-      return <BarrageItem text={item.text} />
+      return <BarrageItem key={item.key} name={item.key} text={item.value.text} />
     });
 
     return (

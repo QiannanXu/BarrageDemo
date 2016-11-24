@@ -13,7 +13,10 @@ class BarrageSender extends React.Component {
 
     this.firebaseRef = firebase.database().ref("items");
     this.firebaseRef.on("child_added", (dataSnapshot) =>  {
-      items.push(dataSnapshot.val());
+      items.push({
+        key: dataSnapshot.key,
+        value: dataSnapshot.val()
+      });
       this.props.onSend(items);
     });
   }
